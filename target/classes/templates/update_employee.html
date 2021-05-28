@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Employee Management System</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+/* Set black background color, white text and some padding */
+footer {
+	background-color: #555;
+	color: white;
+	padding: 15px;
+}
+</style>
+</head>
+<body>
+	<div class="container text-center">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" th:href="@{/}">Employee MS</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#" th:href="@{/}">Dashboard</a></li>
+						<li><a th:href="@{/showNewEmployeeForm}"> Add Employee </a></li>
+						<li><a href="#" th:href="@{/}">Messages</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/logout}"><span
+								class="glyphicon glyphicon-user"></span> Logout</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default text-left">
+							<div class="panel-body">
+								<h1 style="text-align: center;">Update Employees List</h1>
+
+
+								<form action="#" th:action="@{/saveEmployee}"
+									th:object="${employee}" method="POST">
+
+									<!-- Add hidden form field to handle update -->
+									<input type="hidden" th:field="*{id}" /> <input type="text"
+										th:field="*{firstName}" class="form-control mb-4 col-4">
+
+									<input type="text" th:field="*{lastName}"
+										class="form-control mb-4 col-4"> <input type="text"
+										th:field="*{email}" class="form-control mb-4 col-4"> <input
+										type="text" th:field="*{phone}"
+										class="form-control mb-4 col-4"> <input type="text"
+										th:field="*{address}" class="form-control mb-4 col-4">
+
+									<button type="submit" class="btn btn-info col-2">
+										Update Employee</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer class="container-fluid text-center">
+		<p>
+			Copyright © 2018.<a href="https://hamimminhas.com">Hamim Mia</a>
+		</p>
+	</footer>
+</body>
+</html>

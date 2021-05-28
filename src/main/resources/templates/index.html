@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Employee Management System</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+/* Set black background color, white text and some padding */
+footer {
+	background-color: #555;
+	color: white;
+	padding: 15px;
+}
+</style>
+</head>
+<body>
+	<div class="container text-center">
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" th:href="@{/}">Employee MS</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#" th:href="@{/}">Dashboard</a></li>
+						<li><a th:href="@{/showNewEmployeeForm}"> Add Employee </a></li>
+						<li><a href="#" th:href="@{/}">Messages</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/logout}"><span
+								class="glyphicon glyphicon-user"></span> Logout</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="col-sm-2"></div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="panel panel-default text-left">
+							<div class="panel-body">
+								<h1 style="text-align: center;">List Of Employees</h1>
+								<table border="1"
+									class="table table-striped table-responsive-md">
+									<thead>
+										<tr>
+											<th><a
+												th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+													First Name</a></th>
+											<th><a
+												th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+													Last Name</a></th>
+											<th><a
+												th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+													Email</a></th>
+											<th><a
+												th:href="@{'/page/' + ${currentPage} + '?sortField=phone&sortDir=' + ${reverseSortDir}}">
+													Phone Number</a></th>
+											<th><a
+												th:href="@{'/page/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">
+													Address</a></th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="employee : ${listEmployees}">
+											<td th:text="${employee.firstName}"></td>
+											<td th:text="${employee.lastName}"></td>
+											<td th:text="${employee.email}"></td>
+											<td th:text="${employee.phone}"></td>
+											<td th:text="${employee.address}"></td>
+											<td><a
+												th:href="@{/showFormForUpdate/{id}(id=${employee.id})}"
+												class="btn btn-primary">Edit</a> <a
+												th:href="@{/deleteEmployee/{id}(id=${employee.id})}"
+												class="btn btn-danger">Delete</a></td>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div th:if="${totalPages > 1}">
+									<div class="row col-sm-10">
+										<div class="col-sm-3">Total Rows: [[${totalItems}]]</div>
+										<div class="col-sm-2">
+											<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+												<a th:if="${currentPage != i}"
+												th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+												<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+												&nbsp;
+											</span>
+										</div>
+										<div class="col-sm-1">
+											<a th:if="${currentPage < totalPages}"
+												th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+											<span th:unless="${currentPage < totalPages}">Next</span>
+										</div>
+
+										<div class="col-sm-1">
+											<a th:if="${currentPage < totalPages}"
+												th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+											<span th:unless="${currentPage < totalPages}">Last</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<footer class="container-fluid text-center">
+		<p>
+			Copyright © 2018.<a href="https://hamimminhas.com">Hamim Mia</a>
+		</p>
+	</footer>
+
+</body>
+</html>
